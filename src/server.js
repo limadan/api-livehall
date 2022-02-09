@@ -1,60 +1,61 @@
 const express = require('express');
 const port = 3030;
-const conexao = require('./conexao')
 const app = express();
+const db = require('./database.js')
 const cors = require('cors')
 
 
 //app.use(express.json)
-//app.use(cors)
+app.use(cors())
 
-conexao.connect(
-    erro => {
-        if(erro){
-            console.log(erro)
-        }else{
-            app.listen(port, ()=>{
-                console.log("Servidor rodando!")
-            })
+app.listen(port, ()=>{
+    console.log("Servidor rodando!")
+})
 
-            app.get('/streams', (req, res, next)=>{
-                const sql = "SELECT * FROM streams";
-                conexao.query(sql, (erro, resultados)=>{
-                    if(erro){
-                        console.log(erro)
-                        return erro
-                    }else{
-                        res.send(resultados)
-                        return resultados;
-                    }
-                })
-            })
+/*app.get('/streams', (req, res, next)=>{
+    const sql = "SELECT * FROM streams";
+    db.all(sql, [], (err, result)=>{
+        if(err) return console.log(err);
+        res.send(result);
+    })
+                
+    db.close((err)=>{
+        console.log(err)
+    })
+})
 
-            app.get('/users', (req, res, next)=>{
-                const sql = "SELECT * FROM usuarios";
-                conexao.query(sql, (erro, resultados)=>{
-                    if(erro){
-                        console.log(erro)
-                        return erro
-                    }else{
-                        res.send(resultados)
-                        return resultados;
-                    }
-                })
-            })
+app.get('/users', (req, res, next)=>{
+    const sql = "SELECT * FROM usuarios";
+    db.all(sql, [], (err, result)=>{
+        if(err) return console.log(err);
+        res.send(result);
+    })
+                
+    db.close((err)=>{
+        console.log(err)
+    })
+})
 
-            app.get('/users/:id', (req, res, next)=>{
-                const sql = "SELECT * FROM usuarios WHERE Id_user = ${req.params.id}";
-                conexao.query(sql, (erro, resultados)=>{
-                    if(erro){
-                        console.log(erro)
-                        return erro
-                    }else{
-                        res.send(resultados)
-                        return resultados;
-                    }
-                })
-            })
-        }
-    }
-)
+app.get('/users/:id', (req, res, next)=>{
+    const sql = "SELECT * FROM usuarios WHERE Id_user = ${req.params.id}";
+    db.all(sql, [], (err, result)=>{
+        if(err) return console.log(err);
+            res.send(result);
+    })
+                
+    db.close((err)=>{
+        console.log(err)
+    })
+})*/
+
+app.get("/streams",(req, res)=>{
+    res.send(db.getStreams())
+})
+
+app.get("/users",(req, res)=>{
+    res.send(db.getUsers())
+})
+
+app.get("/users/:id",(req, res)=>{
+    res.send(db.getUsers()[req.params.id-1])
+})

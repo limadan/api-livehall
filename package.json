@@ -1,0 +1,30 @@
+{
+  "name": "livehall",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "mysql": "^2.18.1",
+    "node": "^17.4.0",
+    "node-pre-gyp": "^0.17.0",
+    "source": "^0.0.3",
+    "sql.js": "^1.6.2",
+    "sqlite3": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/limadan/api-livehall.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/limadan/api-livehall/issues"
+  },
+  "homepage": "https://github.com/limadan/api-livehall#readme"
+}
