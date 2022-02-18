@@ -87,4 +87,8 @@ var getStreams = function(){
     return streams;
 }
 
-module.exports = {getUsers, getStreams};
+var addUser = function(user){
+    users.push(user)
+}
+
+module.exports = {getUsers, getStreams, addUser};
